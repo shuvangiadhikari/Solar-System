@@ -1,0 +1,73 @@
+﻿  imageloader.cpp
+  main.cpp
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(26,41): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(26,34): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(37,36): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(37,30): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(45,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(47,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(48,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(49,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(50,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(51,40): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(52,40): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(53,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(54,33): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(55,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(56,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(57,33): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(58,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(59,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(60,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(61,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(62,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(63,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(140,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(140,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(141,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(141,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(142,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(142,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(143,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(143,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(144,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(144,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(145,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(145,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(146,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(146,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(147,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(147,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(148,44): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(148,37): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(190,31): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(203,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(203,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(226,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(226,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(249,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(249,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(272,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(272,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(301,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(301,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(319,30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(332,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(332,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(352,30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(365,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(365,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(371,32): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(371,26): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(372,32): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(372,26): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(389,30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(402,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(402,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(418,30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(431,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(431,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(460,39): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\main.cpp(460,33): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+  Generating Code...
+  SolarSystem.vcxproj -> C:\Users\Shuvangi\OneDrive\Desktop\Graphics\Solar-System\Debug\SolarSystem.exe
