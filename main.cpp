@@ -7,10 +7,10 @@
 
 using namespace std;
 
-class Planet{
+class Planet {
 public:
 	float radius, distance, orbit, orbitSpeed, axisTilt, axisAni;
-	Planet(float _radius, float _distance, float _orbit, float _orbitSpeed, float _axisTilt, float _axisAni){
+	Planet(float _radius, float _distance, float _orbit, float _orbitSpeed, float _axisTilt, float _axisAni) {
 		radius = _radius;
 		distance = _distance;
 		orbit = _orbit;
@@ -19,7 +19,7 @@ public:
 		axisAni = _axisAni;
 	}
 
-	void drawSmallOrbit(void){
+	void drawSmallOrbit(void) {
 		glPushMatrix();
 		glColor3ub(255, 255, 255);
 		glRotatef(90.0, 1.0, 0.0, 0.0);
@@ -27,8 +27,8 @@ public:
 		glPopMatrix();
 	}
 
-	void drawMoon(void){
-		GLUquadricObj *quadric;
+	void drawMoon(void) {
+		GLUquadricObj* quadric;
 		quadric = gluNewQuadric();
 		glPushMatrix();
 		glColor3ub(255, 255, 255);
@@ -72,9 +72,15 @@ int labelsActive = 0;
 int zoom = 50;
 int logoScene = 1;
 
+// Original Code
+//float lightPos[] = { 0.0, 0.0, -75.0, 1.0 }; // Spotlight position.
+//static float spotAngle = 40; // Spotlight cone half-angle.
+//float spotDirection[] = { 1.0, 0.0, 0.0 }; // Spotlight direction.
+//static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
+
 float lightPos[] = { 0.0, 0.0, -75.0, 1.0 }; // Spotlight position.
-static float spotAngle = 40; // Spotlight cone half-angle.
-float spotDirection[] = { 1.0, 0.0, 0.0 }; // Spotlight direction.
+static float spotAngle = 90; // Spotlight cone half-angle.
+float spotDirection[] = { 0.0, 1.0, 0.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
 GLuint loadTexture(Image* image) {
@@ -88,13 +94,13 @@ GLuint loadTexture(Image* image) {
 
 GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, pluTexture, staTexture, logTexture;
 
-void writeBitmapString(void *font, char *string)
+void writeBitmapString(void* font, char* string)
 {
-	char *c;
+	char* c;
 	for (c = string; *c != '\0'; c++) glutBitmapCharacter(font, *c);
 }
 
-void setup(void){
+void setup(void) {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glEnable(GL_DEPTH_TEST);
 
@@ -111,45 +117,60 @@ void setup(void){
 	Image* sat = loadBMP("saturn.bmp");		satTexture = loadTexture(sat);		delete sat;
 	Image* ura = loadBMP("uranus.bmp");		uraTexture = loadTexture(ura);		delete ura;
 	Image* nep = loadBMP("neptune.bmp");	nepTexture = loadTexture(nep);		delete nep;
-	Image* plu = loadBMP("pluto.bmp");		pluTexture = loadTexture(plu);		delete plu;
 	Image* log = loadBMP("logo.bmp");		logTexture = loadTexture(log);		delete log;
 
 	//LIGHTING SETUP
+	//glEnable(GL_LIGHTING);
+	//float lightAmb[] = { 0.0, 0.0, 0.0, 1.0 }; // ambient lighting is set to full black
+	//float lightDifAndSpec[] = { 1.0, 1.0, 1.0, 1.0 }; // source lighting is set to full white
+	//float globAmb[] = { 0.5, 0.5, 0.5, 1.0 };
+	//glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
+	//glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDifAndSpec);
+	//glLightfv(GL_LIGHT0, GL_SPECULAR, lightDifAndSpec);
+	//glEnable(GL_LIGHT0);
+	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globAmb);
+	//glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+	//glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+	//glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	//glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, spotAngle);
+	//glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDirection);
+	//glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, spotExponent);
+
 	glEnable(GL_LIGHTING);
-	float lightAmb[] = { 0.0, 0.0, 0.0, 1.0 };
-	float lightDifAndSpec[] = { 1.0, 1.0, 1.0, 1.0 };
-	float globAmb[] = { 0.5, 0.5, 0.5, 1.0 };
+	float lightAmb[] = { 0.0, 0.0, 0.0, 1.0 }; // ambient lighting is set to full black
+	float lightDifAndSpec[] = { 1.0, 1.0, 1.0, 1.0 }; // source lighting is set to full white
+	float globAmb[] = { 0.3, 0.3, 0.3, 1.0 }; // how much illumination when there is no light at all
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDifAndSpec);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, lightDifAndSpec);
 	glEnable(GL_LIGHT0);
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globAmb);
-	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE); // so that lighting model takes viewer's position into account
 	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, spotAngle);
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDirection);
 	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, spotExponent);
+
 }
 
-void orbitalTrails(void){
-	glPushMatrix();
-	glColor3ub(255, 255, 255);
-	glTranslatef(0.0, 0.0, 0.0);
-	glRotatef(90.0, 1.0, 0.0, 0.0);
-	glutWireTorus(0.001, mer.distance, 100.0, 100.0);
-	glutWireTorus(0.001, ven.distance, 100.0, 100.0);
-	glutWireTorus(0.001, ear.distance, 100.0, 100.0);
-	glutWireTorus(0.001, mar.distance, 100.0, 100.0);
-	glutWireTorus(0.001, jup.distance, 100.0, 100.0);
-	glutWireTorus(0.001, sat.distance, 100.0, 100.0);
-	glutWireTorus(0.001, ura.distance, 100.0, 100.0);
-	glutWireTorus(0.001, nep.distance, 100.0, 100.0);
-	glutWireTorus(0.001, plu.distance, 100.0, 100.0);
-	glPopMatrix();
+void orbitalTrails(void) {
+	//glPushMatrix();
+	//glColor3ub(255, 255, 255);
+	//glTranslatef(0.0, 0.0, 0.0);
+	///*glRotatef(90.0, 1.0, 0.0, 0.0);
+	//glutWireTorus(0.001, mer.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, ven.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, ear.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, mar.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, jup.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, sat.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, ura.distance, 100.0, 100.0);
+	//glutWireTorus(0.001, nep.distance, 100.0, 100.0);*/
+	//glPopMatrix();
 }
 
-void drawLogoScene(void){
+void drawLogoScene(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -168,7 +189,7 @@ void drawLogoScene(void){
 	glutSwapBuffers();
 }
 
-void drawScene(void){
+void drawScene(void) {
 	frameCount++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
@@ -179,14 +200,14 @@ void drawScene(void){
 
 	if (bigOrbitActive == 1) orbitalTrails();
 
-	GLUquadric *quadric;
+	GLUquadric* quadric;
 	quadric = gluNewQuadric();
 
 	//Sun
 	glPushMatrix();
 	glRotatef(sun.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(sun.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(-1.2, 7.0, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Sun");
@@ -209,7 +230,7 @@ void drawScene(void){
 	glPushMatrix();
 	glRotatef(mer.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(mer.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 3, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Mercury");
@@ -232,7 +253,7 @@ void drawScene(void){
 	glPushMatrix();
 	glRotatef(ven.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(ven.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 3, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Venus");
@@ -255,7 +276,7 @@ void drawScene(void){
 	glPushMatrix();
 	glRotatef(ear.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(ear.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 3, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Earth");
@@ -272,19 +293,19 @@ void drawScene(void){
 	gluSphere(quadric, ear.radius, 20.0, 20.0);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-	if (smallOrbitActive == 1){
+	/*if (smallOrbitActive == 1){
 		lun.drawSmallOrbit();
 	}
 	if (moonsActive == 1){
 		lun.drawMoon();
-	}
+	}*/
 	glPopMatrix();
 
 	//Mars, Orbits, Moons
 	glPushMatrix();
 	glRotatef(mar.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(mar.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 3, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Mars");
@@ -301,21 +322,21 @@ void drawScene(void){
 	gluSphere(quadric, mar.radius, 20.0, 20.0);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-	if (smallOrbitActive == 1){
+	/*if (smallOrbitActive == 1){
 		pho.drawSmallOrbit();
 		dei.drawSmallOrbit();
 	}
 	if (moonsActive == 1){
 		pho.drawMoon();
 		dei.drawMoon();
-	}
+	}*/
 	glPopMatrix();
 
 	//Jupiter, Orbits, Moons
 	glPushMatrix();
 	glRotatef(jup.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(jup.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 4.4, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Jupiter");
@@ -332,7 +353,7 @@ void drawScene(void){
 	gluSphere(quadric, jup.radius, 20.0, 20.0);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-	if (smallOrbitActive == 1){
+	/*if (smallOrbitActive == 1){
 		eur.drawSmallOrbit();
 		gan.drawSmallOrbit();
 		cal.drawSmallOrbit();
@@ -341,14 +362,14 @@ void drawScene(void){
 		eur.drawMoon();
 		gan.drawMoon();
 		cal.drawMoon();
-	}
+	}*/
 	glPopMatrix();
 
 	//Saturn, Orbit, Moon
 	glPushMatrix();
 	glRotatef(sat.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(sat.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 4.4, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Saturn");
@@ -371,12 +392,12 @@ void drawScene(void){
 	glutWireTorus(0.2, 6.0, 30.0, 30.0);
 	glutWireTorus(0.4, 5.0, 30.0, 30.0);
 	glPopMatrix();
-	if (smallOrbitActive == 1){
+	/*if (smallOrbitActive == 1){
 		tit.drawSmallOrbit();
 	}
 	if (moonsActive == 1){
 		tit.drawMoon();
-	}
+	}*/
 	glPopMatrix();
 
 	glColor3ub(255, 255, 255);		//FIXES SHADING ISSUE
@@ -385,7 +406,7 @@ void drawScene(void){
 	glPushMatrix();
 	glRotatef(ura.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(ura.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 4.4, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Uranus");
@@ -402,19 +423,19 @@ void drawScene(void){
 	gluSphere(quadric, ura.radius, 20.0, 20.0);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-	if (smallOrbitActive == 1){
+	/*if (smallOrbitActive == 1){
 		puc.drawSmallOrbit();
 	}
 	if (moonsActive == 1){
 		puc.drawMoon();
-	}
+	}*/
 	glPopMatrix();
 
 	//Neptune, Orbit, Moon
 	glPushMatrix();
 	glRotatef(nep.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(nep.distance, 0.0, 0.0);
-	if (labelsActive == 1){
+	if (labelsActive == 1) {
 		glRasterPos3f(0.0, 4.4, 0.0);
 		glColor3ub(255, 255, 255);
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Neptune");
@@ -431,42 +452,14 @@ void drawScene(void){
 	gluSphere(quadric, nep.radius, 20.0, 20.0);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-	if (smallOrbitActive == 1){
+	/*if (smallOrbitActive == 1){
 		tri.drawSmallOrbit();
 	}
 	if (moonsActive == 1){
 		tri.drawMoon();
-	}
+	}*/
 	glPopMatrix();
 
-	//Pluto, Orbit, Moon
-	glPushMatrix();
-	glRotatef(plu.orbit, 0.0, 1.0, 0.0);
-	glTranslatef(plu.distance, 0.0, 0.0);
-	if (labelsActive == 1){
-		glRasterPos3f(0.0, 3.0, 0.0);
-		glColor3ub(255, 255, 255);
-		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Pluto");
-	}
-	glPushMatrix();
-	glRotatef(plu.axisTilt, 1.0, 0.0, 0.0);
-	glRotatef(plu.axisAni, 0.0, 1.0, 0.0);
-	glRotatef(90.0, 1.0, 0.0, 0.0);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, pluTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	gluQuadricTexture(quadric, 1);
-	gluSphere(quadric, plu.radius, 20.0, 20.0);
-	glDisable(GL_TEXTURE_2D);
-	glPopMatrix();
-	if (smallOrbitActive == 1){
-		nix.drawSmallOrbit();
-	}
-	if (moonsActive == 1){
-		nix.drawMoon();
-	}
-	glPopMatrix();
 
 	glPushMatrix();
 	glEnable(GL_TEXTURE_2D);
@@ -493,8 +486,8 @@ void drawScene(void){
 	glutSwapBuffers();
 }
 
-void drawScenesInOrder(void){
-	if (logoScene == 1){
+void drawScenesInOrder(void) {
+	if (logoScene == 1) {
 		drawLogoScene();
 	}
 	else {
@@ -502,7 +495,7 @@ void drawScenesInOrder(void){
 	}
 }
 
-void resize(int w, int h){
+void resize(int w, int h) {
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -510,8 +503,8 @@ void resize(int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void animate(int n){
-	if (isAnimate){
+void animate(int n) {
+	if (isAnimate) {
 		mer.orbit += mer.orbitSpeed;
 		ven.orbit += ven.orbitSpeed;
 		ear.orbit += ear.orbitSpeed;
@@ -531,7 +524,7 @@ void animate(int n){
 		nix.orbit += nix.orbitSpeed;
 		puc.orbit += puc.orbitSpeed;
 		tri.orbit += tri.orbitSpeed;
-		if (mer, ven, ear, mar, jup, sat, ura, nep, plu, lun, pho, dei, eur, gan, cal, tit, nix, puc, tri.orbit > 360.0){
+		if (mer, ven, ear, mar, jup, sat, ura, nep, plu, lun, pho, dei, eur, gan, cal, tit, nix, puc, tri.orbit > 360.0) {
 			mer, ven, ear, mar, jup, sat, ura, nep, plu, lun, pho, dei, eur, gan, cal, tit, nix, puc, tri.orbit -= 360.0;
 		}
 		mer.axisAni += 10.0;
@@ -543,7 +536,7 @@ void animate(int n){
 		ura.axisAni += 10.0;
 		nep.axisAni += 10.0;
 		plu.axisAni += 10.0;
-		if (mer, ven, ear, mar, jup, sat, ura, nep, plu.axisAni > 360.0){
+		if (mer, ven, ear, mar, jup, sat, ura, nep, plu.axisAni > 360.0) {
 			mer, ven, ear, mar, jup, sat, ura, nep, plu.axisAni -= 360.0;
 		}
 		glutPostRedisplay();
@@ -567,10 +560,10 @@ void mouseWheel(int wheel, int direction, int x, int y)
 	glutPostRedisplay();
 }
 
-void keyInput(unsigned char key, int x, int y){
-	switch (key){
+void keyInput(unsigned char key, int x, int y) {
+	switch (key) {
 	case 27: exit(0); break;
-	case ' ': if (isAnimate) isAnimate = 0; else{ isAnimate = 1; animate(1); } break;
+	case ' ': if (isAnimate) isAnimate = 0; else { isAnimate = 1; animate(1); } break;
 	case 'o': if (smallOrbitActive) smallOrbitActive = 0; else smallOrbitActive = 1; glutPostRedisplay(); break;
 	case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
 	case 'm': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
@@ -583,7 +576,7 @@ void keyInput(unsigned char key, int x, int y){
 	}
 }
 
-void intructions(void){
+void intructions(void) {
 	cout << "SPACE to play/pause the simulation." << endl;
 	cout << "ESC to exit the simulation." << endl;
 	cout << "O to show/hide Big Orbital Trails." << endl;
@@ -594,7 +587,7 @@ void intructions(void){
 	cout << "Scroll to change camera movement" << endl;
 }
 
-int main(int argc, char **argv){
+int main(int argc, char** argv) {
 	intructions();
 	glutInit(&argc, argv);
 
