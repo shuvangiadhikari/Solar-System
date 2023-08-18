@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib> // for rand() function for random number generator in orbit position
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <GL/glext.h>
@@ -19,16 +20,16 @@ public:
 		axisAni = _axisAni;
 	}
 
-	void drawSmallOrbit(void) {
+	/*void drawSmallOrbit(void){
 		glPushMatrix();
 		glColor3ub(255, 255, 255);
 		glRotatef(90.0, 1.0, 0.0, 0.0);
 		glutWireTorus(0.001, distance, 100.0, 100.0);
 		glPopMatrix();
-	}
+	}*/
 
-	void drawMoon(void) {
-		GLUquadricObj* quadric;
+	/*void drawMoon(void){
+		GLUquadricObj *quadric;
 		quadric = gluNewQuadric();
 		glPushMatrix();
 		glColor3ub(255, 255, 255);
@@ -36,36 +37,37 @@ public:
 		glTranslatef(distance, 0.0, 0.0);
 		gluSphere(quadric, radius, 20.0, 20.0);
 		glPopMatrix();
-	}
+	}*/
 
 };
 
 //Sun, Planets and Stars
 Planet sun(5.0, 0, 0, 0, 0, 0);				//Sun
-Planet mer(1.0, 7, 0, 4.74, 02.11, 0);		//Mercury
-Planet ven(1.5, 11, 0, 3.50, 177.0, 0);		//Venus
-Planet ear(2.0, 16, 0, 2.98, 23.44, 0);		//Earth
-Planet mar(1.2, 21, 0, 2.41, 25.00, 0);		//Mars
-Planet jup(3.5, 28, 0, 1.31, 03.13, 0);		//Jupiter
-Planet sat(3.0, 37, 0, 0.97, 26.70, 0);		//Saturn
-Planet ura(2.5, 45.5, 0, 0.68, 97.77, 0);	//Uranus
-Planet nep(2.3, 53.6, 0, 0.54, 28.32, 0);	//Neptune
-Planet plu(0.3, 59, 0, 0.47, 119.6, 0);		//Pluto
-Planet lun(.40, 3, 0, 5.40, 0, 0);			//Luna     (Earth)
-Planet pho(.20, 1.8, 0, 2.30, 0, 0);		//Phobos   (Mars)
-Planet dei(.24, 2.4, 0, 3.60, 0, 0);		//Deimos   (Mars)
-Planet eur(.24, 4, 0, 4.40, 0, 0);			//Europa   (Jupiter)
-Planet gan(.24, 4.7, 0, 5.00, 0, 0);		//Ganymede (Jupiter)
-Planet cal(.24, 5.3, 0, 2.30, 0, 0);		//Callisto (Jupiter)
-Planet tit(.75, 3.7, 0, 2.40, 0, 0);		//Titan	   (Saturn)
-Planet nix(.10, 1.5, 0, 5.00, 0, 0);		//Nix	   (Pluto)
-Planet puc(.26, 2.9, 0, 7.00, 0, 0);		//Puck	   (Uranus)
-Planet tri(.36, 3.2, 0, 3.40, 0, 0);		//Triton   (Neptune)
+Planet mer(1.0, 7, rand() % 360, 4.74, 02.11, 0);		//Mercury
+Planet ven(1.5, 11, rand() % 360, 3.50, 177.0, 0);		//Venus
+Planet ear(2.0, 16, rand() % 360, 2.98, 23.44, 0);		//Earth
+Planet mar(1.2, 21, rand() % 360, 2.41, 25.00, 0);		//Mars
+//Planet jup(3.5, 28, 0, 1.31, 03.13, 0);		//Jupiter
+Planet jup(3.5, 28, rand() % 360, 1.31, 03.13, 0);		//Jupiter
+Planet sat(3.0, 37, rand() % 360, 0.97, 26.70, 0);		//Saturn
+Planet ura(2.5, 45.5, rand() % 360, 0.68, 97.77, 0);	//Uranus
+Planet nep(2.3, 53.6, rand() % 360, 0.54, 28.32, 0);	//Neptune
+//Planet plu(0.3, 59, 0, 0.47, 119.6, 0);		//Pluto
+//Planet lun(.40, 3, 0, 5.40, 0, 0);			//Luna     (Earth)
+//Planet pho(.20, 1.8, 0, 2.30, 0, 0);		//Phobos   (Mars)
+//Planet dei(.24, 2.4, 0, 3.60, 0, 0);		//Deimos   (Mars)
+//Planet eur(.24, 4, 0, 4.40, 0, 0);			//Europa   (Jupiter)
+//Planet gan(.24, 4.7, 0, 5.00, 0, 0);		//Ganymede (Jupiter)
+//Planet cal(.24, 5.3, 0, 2.30, 0, 0);		//Callisto (Jupiter)
+//Planet tit(.75, 3.7, 0, 2.40, 0, 0);		//Titan	   (Saturn)
+//Planet nix(.10, 1.5, 0, 5.00, 0, 0);		//Nix	   (Pluto)
+//Planet puc(.26, 2.9, 0, 7.00, 0, 0);		//Puck	   (Uranus)
+//Planet tri(.36, 3.2, 0, 3.40, 0, 0);		//Triton   (Neptune)
 
 int isAnimate = 0;
 int bigOrbitActive = 1;
-int smallOrbitActive = 1;
-int moonsActive = 1;
+//int smallOrbitActive = 1;
+//int moonsActive = 1;
 int changeCamera = 0;
 int frameCount = 0;
 int labelsActive = 0;
@@ -78,8 +80,8 @@ int logoScene = 1;
 //float spotDirection[] = { 1.0, 0.0, 0.0 }; // Spotlight direction.
 //static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
-float lightPos[] = { 0.0, 0.0, -75.0, 1.0 }; // Spotlight position.
-static float spotAngle = 90; // Spotlight cone half-angle.
+float lightPos[] = { 0.0, 0.0, -50.0, 1.0 }; // Spotlight position.
+static float spotAngle = 180; // Spotlight cone half-angle.
 float spotDirection[] = { 0.0, 1.0, 0.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
@@ -97,7 +99,7 @@ GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, s
 void writeBitmapString(void* font, char* string)
 {
 	char* c;
-	for (c = string; *c != '\0'; c++) glutBitmapCharacter(font, *c);
+	for (c = string; *c != '\0'; c++) glutBitmapCharacter(font, *c); // writes string character by character
 }
 
 void setup(void) {
@@ -136,10 +138,13 @@ void setup(void) {
 	//glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDirection);
 	//glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, spotExponent);
 
+	//float sunEmission[] = { 0.05, 0.05, 0.05, 1.0 }; // Emission color for the sun (like bright yellow)
+	//glMaterialfv(GL_FRONT, GL_EMISSION, sunEmission);
+
 	glEnable(GL_LIGHTING);
 	float lightAmb[] = { 0.0, 0.0, 0.0, 1.0 }; // ambient lighting is set to full black
 	float lightDifAndSpec[] = { 1.0, 1.0, 1.0, 1.0 }; // source lighting is set to full white
-	float globAmb[] = { 0.3, 0.3, 0.3, 1.0 }; // how much illumination when there is no light at all
+	float globAmb[] = { 0.1, 0.1, 0.1, 1.0 }; // how much illumination when there is no light at all
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDifAndSpec);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, lightDifAndSpec);
@@ -195,10 +200,10 @@ void drawScene(void) {
 	glLoadIdentity();
 
 	if (changeCamera == 0)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	if (changeCamera == 1)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	if (changeCamera == 2)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	//if (changeCamera == 1)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	//if (changeCamera == 2)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-	if (bigOrbitActive == 1) orbitalTrails();
+	//if (bigOrbitActive == 1) orbitalTrails();
 
 	GLUquadric* quadric;
 	quadric = gluNewQuadric();
@@ -208,8 +213,8 @@ void drawScene(void) {
 	glRotatef(sun.orbit, 0.0, 1.0, 0.0);
 	glTranslatef(sun.distance, 0.0, 0.0);
 	if (labelsActive == 1) {
-		glRasterPos3f(-1.2, 7.0, 0.0);
-		glColor3ub(255, 255, 255);
+		glRasterPos3f(-1.2, 7.0, 0.0); // position of text
+		glColor3ub(255, 255, 255); // color of text
 		writeBitmapString(GLUT_BITMAP_HELVETICA_12, "Sun");
 	}
 	glPushMatrix();
@@ -389,7 +394,7 @@ void drawScene(void) {
 	glPushMatrix();
 	glColor3ub(158, 145, 137);
 	glRotatef(-63.0, 1.0, 0.0, 0.0);
-	glutWireTorus(0.2, 6.0, 30.0, 30.0);
+	glutWireTorus(0.2, 6.0, 30.0, 30.0); // for rings of Saturn
 	glutWireTorus(0.4, 5.0, 30.0, 30.0);
 	glPopMatrix();
 	/*if (smallOrbitActive == 1){
@@ -487,12 +492,13 @@ void drawScene(void) {
 }
 
 void drawScenesInOrder(void) {
-	if (logoScene == 1) {
+	/*if (logoScene == 1){
 		drawLogoScene();
 	}
 	else {
 		drawScene();
-	}
+	}*/
+	drawScene();
 }
 
 void resize(int w, int h) {
@@ -513,7 +519,7 @@ void animate(int n) {
 		sat.orbit += sat.orbitSpeed;
 		ura.orbit += ura.orbitSpeed;
 		nep.orbit += nep.orbitSpeed;
-		plu.orbit += plu.orbitSpeed;
+		/*plu.orbit += plu.orbitSpeed;
 		lun.orbit += lun.orbitSpeed;
 		pho.orbit += pho.orbitSpeed;
 		dei.orbit += dei.orbitSpeed;
@@ -523,9 +529,12 @@ void animate(int n) {
 		tit.orbit += tit.orbitSpeed;
 		nix.orbit += nix.orbitSpeed;
 		puc.orbit += puc.orbitSpeed;
-		tri.orbit += tri.orbitSpeed;
-		if (mer, ven, ear, mar, jup, sat, ura, nep, plu, lun, pho, dei, eur, gan, cal, tit, nix, puc, tri.orbit > 360.0) {
+		tri.orbit += tri.orbitSpeed;*/
+		/*if (mer, ven, ear, mar, jup, sat, ura, nep, plu, lun, pho, dei, eur, gan, cal, tit, nix, puc, tri.orbit > 360.0){
 			mer, ven, ear, mar, jup, sat, ura, nep, plu, lun, pho, dei, eur, gan, cal, tit, nix, puc, tri.orbit -= 360.0;
+		}*/
+		if (mer, ven, ear, mar, jup, sat, ura, nep.orbit > 360.0) {
+			mer, ven, ear, mar, jup, sat, ura, nep.orbit -= 360.0;
 		}
 		mer.axisAni += 10.0;
 		ven.axisAni += 10.0;
@@ -535,9 +544,9 @@ void animate(int n) {
 		sat.axisAni += 10.0;
 		ura.axisAni += 10.0;
 		nep.axisAni += 10.0;
-		plu.axisAni += 10.0;
-		if (mer, ven, ear, mar, jup, sat, ura, nep, plu.axisAni > 360.0) {
-			mer, ven, ear, mar, jup, sat, ura, nep, plu.axisAni -= 360.0;
+		//plu.axisAni += 10.0;
+		if (mer, ven, ear, mar, jup, sat, ura, nep.axisAni > 360.0) {
+			mer, ven, ear, mar, jup, sat, ura, nep.axisAni -= 360.0;
 		}
 		glutPostRedisplay();
 		glutTimerFunc(30, animate, 1);
@@ -564,26 +573,26 @@ void keyInput(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: exit(0); break;
 	case ' ': if (isAnimate) isAnimate = 0; else { isAnimate = 1; animate(1); } break;
-	case 'o': if (smallOrbitActive) smallOrbitActive = 0; else smallOrbitActive = 1; glutPostRedisplay(); break;
-	case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
-	case 'm': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
-	case 'M': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
+		/*case 'o': if (smallOrbitActive) smallOrbitActive = 0; else smallOrbitActive = 1; glutPostRedisplay(); break;
+		case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
+		case 'm': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
+		case 'M': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;*/
 	case 'l': if (labelsActive) labelsActive = 0; else labelsActive = 1; glutPostRedisplay(); break;
 	case 'L': if (labelsActive) labelsActive = 0; else labelsActive = 1; glutPostRedisplay(); break;
 	case '1': changeCamera = 0; glutPostRedisplay(); break;
-	case '2': changeCamera = 1; glutPostRedisplay(); break;
-	case '3': changeCamera = 2; glutPostRedisplay(); break;
+		/*case '2': changeCamera = 1; glutPostRedisplay(); break;
+		case '3': changeCamera = 2; glutPostRedisplay(); break;*/
 	}
 }
 
 void intructions(void) {
 	cout << "SPACE to play/pause the simulation." << endl;
 	cout << "ESC to exit the simulation." << endl;
-	cout << "O to show/hide Big Orbital Trails." << endl;
+	/*cout << "O to show/hide Big Orbital Trails." << endl;
 	cout << "o to show/hide Small Orbital Trails." << endl;
-	cout << "M/m to show/hide Moons." << endl;
+	cout << "M/m to show/hide Moons." << endl;*/
 	cout << "L/l to show/hide labels" << endl;
-	cout << "1, 2 and 3 to change camera angles." << endl;
+	//cout << "1, 2 and 3 to change camera angles." << endl;
 	cout << "Scroll to change camera movement" << endl;
 }
 
