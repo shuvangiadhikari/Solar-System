@@ -48,10 +48,18 @@ Planet ven(1.5, 11, rand() % 360, 3.50, 177.0, 0);		//Venus
 Planet ear(2.0, 16, rand() % 360, 2.98, 23.44, 0);		//Earth
 Planet mar(1.2, 21, rand() % 360, 2.41, 25.00, 0);		//Mars
 //Planet jup(3.5, 28, 0, 1.31, 03.13, 0);		//Jupiter
-Planet jup(3.5, 28, rand() % 360, 1.31, 03.13, 0);		//Jupiter
-Planet sat(3.0, 37, rand() % 360, 0.97, 26.70, 0);		//Saturn
-Planet ura(2.5, 45.5, rand() % 360, 0.68, 97.77, 0);	//Uranus
+
+//Planet jup(3.5, 28, rand() % 360, 1.31, 03.13, 0);		//Jupiter
+//Planet sat(3.0, 37, rand() % 360, 0.97, 26.70, 0);		//Saturn
+//Planet ura(2.5, 45.5, rand() % 360, 0.68, 97.77, 0);	//Uranus
+//Planet nep(2.3, 53.6, rand() % 360, 0.54, 28.32, 0);	//Neptune
+
+Planet jup(3.5, 30, rand() % 360, 1.31, 03.13, 0);		//Jupiter
+Planet sat(3.0, 40, rand() % 360, 0.97, 26.70, 0);		//Saturn
+Planet ura(2.5, 49.5, rand() % 360, 0.68, 97.77, 0);	//Uranus
 Planet nep(2.3, 53.6, rand() % 360, 0.54, 28.32, 0);	//Neptune
+
+
 //Planet plu(0.3, 59, 0, 0.47, 119.6, 0);		//Pluto
 //Planet lun(.40, 3, 0, 5.40, 0, 0);			//Luna     (Earth)
 //Planet pho(.20, 1.8, 0, 2.30, 0, 0);		//Phobos   (Mars)
@@ -161,21 +169,44 @@ void setup(void) {
 
 }
 
-//void orbitalTrails(void) {
-//	//glPushMatrix();
-//	//glColor3ub(255, 255, 255);
-//	//glTranslatef(0.0, 0.0, 0.0);
-//	///*glRotatef(90.0, 1.0, 0.0, 0.0);
-//	//glutWireTorus(0.001, mer.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, ven.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, ear.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, mar.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, jup.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, sat.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, ura.distance, 100.0, 100.0);
-//	//glutWireTorus(0.001, nep.distance, 100.0, 100.0);*/
-//	//glPopMatrix();
-//}
+void orbitalTrails(void) {
+	glPushMatrix();
+	glColor3ub(255, 255, 255);
+	glTranslatef(0.0, 0.0, 0.0);
+	glRotatef(90.0, 1.0, 0.0, 0.0);
+	glutWireTorus(0.001, mer.distance, 100.0, 100.0);
+	glutWireTorus(0.001, ven.distance, 100.0, 100.0);
+	glutWireTorus(0.001, ear.distance, 100.0, 100.0);
+	glutWireTorus(0.001, mar.distance, 100.0, 100.0);
+	glutWireTorus(0.001, jup.distance, 100.0, 100.0);
+	glutWireTorus(0.001, sat.distance, 100.0, 100.0);
+	glutWireTorus(0.001, ura.distance, 100.0, 100.0);
+	glutWireTorus(0.001, nep.distance, 100.0, 100.0);
+	glPopMatrix();
+}
+
+void asteroidBelt(void) {
+	glPushMatrix();
+	glColor3ub(100, 100, 100);
+	glTranslatef(0.0, 0.0, 0.0);
+	glRotatef(90.0, 1.0, 0.0, 0.0);
+	/*for (int i = 2.0; i < 20.0; i+2) {
+		glutWireTorus(0.1, mar.distance + 2.0 + (float)i/10, 100.0, 100.0);
+	}*/
+	glutWireTorus(0.1, mar.distance + 2.0, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 2.2, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 2.4, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 2.6, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 2.8, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 3.0, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 3.2, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 3.4, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 3.6, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 3.8, 100.0, 100.0);
+	glutWireTorus(0.1, mar.distance + 4.0, 100.0, 100.0);
+	glColor3ub(255, 255, 255);
+	glPopMatrix();
+}
 
 void drawLogoScene(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -196,12 +227,19 @@ void drawLogoScene(void) {
 	glutSwapBuffers();
 }
 
+float x_zoom = 0;
+float y_zoom = zoom;
+float z_zoom = 50.0;
+
 void drawScene(void) {
 	frameCount++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	if (changeCamera == 0)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
+	//if (changeCamera == 0)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	if (changeCamera == 0)gluLookAt(x_zoom, y_zoom, z_zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
 	//if (changeCamera == 1)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	//if (changeCamera == 2)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
@@ -224,12 +262,14 @@ void drawScene(void) {
 	glRotatef(sun.axisAni, 0.0, 1.0, 0.0);
 	glRotatef(90.0, 1.0, 0.0, 0.0);
 	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_3D);
 	glBindTexture(GL_TEXTURE_2D, sunTexture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	gluQuadricTexture(quadric, 1);
-	gluSphere(quadric, sun.radius, 20.0, 20.0);
+	gluSphere(quadric, sun.radius, 20.0, 20.0); // sun is divided into 20 vertical and 20 horizontal parts for smooth rendering
 	glDisable(GL_TEXTURE_2D);
+	//glDisable(GL_TEXTURE_3D);
 	glPopMatrix();
 	glPopMatrix();
 
@@ -339,6 +379,30 @@ void drawScene(void) {
 	}*/
 	glPopMatrix();
 
+	// Asteroid Belt
+	asteroidBelt();
+	//glPushMatrix();
+	//glColor3ub(100, 100, 100);
+	//glTranslatef(0.0, 0.0, 0.0);
+	//glRotatef(90.0, 1.0, 0.0, 0.0);
+	///*for (int i = 2.0; i < 20.0; i+2) {
+	//	glutWireTorus(0.1, mar.distance + 2.0 + (float)i/10, 100.0, 100.0);
+	//}*/
+	//glutWireTorus(0.1, mar.distance + 2.0, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 2.2, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 2.4, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 2.6, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 2.8, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 3.0, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 3.2, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 3.4, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 3.6, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 3.8, 100.0, 100.0);
+	//glutWireTorus(0.1, mar.distance + 4.0, 100.0, 100.0);
+	//glColor3ub(255, 255, 255);
+	//glPopMatrix();
+
+
 	//Jupiter, Orbits, Moons
 	glPushMatrix();
 	glRotatef(jup.orbit, 0.0, 1.0, 0.0);
@@ -396,8 +460,15 @@ void drawScene(void) {
 	glPushMatrix();
 	glColor3ub(158, 145, 137);
 	glRotatef(-63.0, 1.0, 0.0, 0.0);
-	glutWireTorus(0.2, 6.0, 30.0, 30.0); // for rings of Saturn
-	glutWireTorus(0.4, 5.0, 30.0, 30.0);
+
+	//glutWireTorus(0.2, 6.0, 30.0, 30.0); // for rings of Saturn
+	//glutWireTorus(0.4, 5.0, 30.0, 30.0);
+	glutWireTorus(0.2, 4.0, 30.0, 30.0); // for rings of Saturn (radiusOfThickness, radiusOfTorusFromCenter, fineDetails, fineDetails)
+	glutWireTorus(0.5, 4.5, 30.0, 30.0);
+	glutWireTorus(0.5, 5.0, 30.0, 30.0);
+	glutWireTorus(0.4, 3.0, 30.0, 30.0);
+
+
 	glPopMatrix();
 	/*if (smallOrbitActive == 1){
 		tit.drawSmallOrbit();
@@ -566,8 +637,11 @@ void mouseControl(int button, int state, int x, int y)
 
 void mouseWheel(int wheel, int direction, int x, int y)
 {
-	if (direction > 0 && zoom < 100) zoom++;
-	if (direction < 0 && zoom > -75) zoom--;
+	/*if (direction > 0 && zoom < 100) zoom++;
+	if (direction < 0 && zoom > -75) zoom--;*/
+
+	if (direction > 0 && zoom < 100) x_zoom++;
+	if (direction < 0 && zoom > -75) x_zoom--;
 	glutPostRedisplay();
 }
 
@@ -575,9 +649,11 @@ void keyInput(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: exit(0); break;
 	case ' ': if (isAnimate) isAnimate = 0; else { isAnimate = 1; animate(1); } break;
-		/*case 'o': if (smallOrbitActive) smallOrbitActive = 0; else smallOrbitActive = 1; glutPostRedisplay(); break;
-		case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
-		case 'm': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
+
+		//case 'o': if (smallOrbitActive) smallOrbitActive = 0; else smallOrbitActive = 1; glutPostRedisplay(); break;
+	case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
+		/*case 'm': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
+
 		case 'M': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;*/
 	case 'l': if (labelsActive) labelsActive = 0; else labelsActive = 1; glutPostRedisplay(); break;
 	case 'L': if (labelsActive) labelsActive = 0; else labelsActive = 1; glutPostRedisplay(); break;
@@ -588,10 +664,11 @@ void keyInput(unsigned char key, int x, int y) {
 }
 
 void intructions(void) {
-	cout << "SPACE to play/pause the simulation." << endl;
+	cout << "Press SPACE to play/pause the simulation." << endl;
 	cout << "ESC to exit the simulation." << endl;
-	/*cout << "O to show/hide Big Orbital Trails." << endl;
-	cout << "o to show/hide Small Orbital Trails." << endl;
+	cout << "O to show/hide Big Orbital Trails." << endl;
+	/*cout << "o to show/hide Small Orbital Trails." << endl;
+
 	cout << "M/m to show/hide Moons." << endl;*/
 	cout << "L/l to show/hide labels" << endl;
 	//cout << "1, 2 and 3 to change camera angles." << endl;
