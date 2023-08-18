@@ -19,13 +19,13 @@ public:
 		axisAni = _axisAni;
 	}
 
-	void drawSmallOrbit(void) {
+	/*void drawSmallOrbit(void) {
 		glPushMatrix();
 		glColor3ub(255, 255, 255);
 		glRotatef(90.0, 1.0, 0.0, 0.0);
 		glutWireTorus(0.001, distance, 100.0, 100.0);
 		glPopMatrix();
-	}
+	}*/
 
 	void drawMoon(void) {
 		GLUquadricObj* quadric;
@@ -51,16 +51,16 @@ Planet sat(3.0, 37, 0, 0.97, 26.70, 0);		//Saturn
 Planet ura(2.5, 45.5, 0, 0.68, 97.77, 0);	//Uranus
 Planet nep(2.3, 53.6, 0, 0.54, 28.32, 0);	//Neptune
 Planet plu(0.3, 59, 0, 0.47, 119.6, 0);		//Pluto
-Planet lun(.40, 3, 0, 5.40, 0, 0);			//Luna     (Earth)
-Planet pho(.20, 1.8, 0, 2.30, 0, 0);		//Phobos   (Mars)
-Planet dei(.24, 2.4, 0, 3.60, 0, 0);		//Deimos   (Mars)
-Planet eur(.24, 4, 0, 4.40, 0, 0);			//Europa   (Jupiter)
-Planet gan(.24, 4.7, 0, 5.00, 0, 0);		//Ganymede (Jupiter)
-Planet cal(.24, 5.3, 0, 2.30, 0, 0);		//Callisto (Jupiter)
-Planet tit(.75, 3.7, 0, 2.40, 0, 0);		//Titan	   (Saturn)
-Planet nix(.10, 1.5, 0, 5.00, 0, 0);		//Nix	   (Pluto)
-Planet puc(.26, 2.9, 0, 7.00, 0, 0);		//Puck	   (Uranus)
-Planet tri(.36, 3.2, 0, 3.40, 0, 0);		//Triton   (Neptune)
+//Planet lun(.40, 3, 0, 5.40, 0, 0);			//Luna     (Earth)
+//Planet pho(.20, 1.8, 0, 2.30, 0, 0);		//Phobos   (Mars)
+//Planet dei(.24, 2.4, 0, 3.60, 0, 0);		//Deimos   (Mars)
+//Planet eur(.24, 4, 0, 4.40, 0, 0);			//Europa   (Jupiter)
+//Planet gan(.24, 4.7, 0, 5.00, 0, 0);		//Ganymede (Jupiter)
+//Planet cal(.24, 5.3, 0, 2.30, 0, 0);		//Callisto (Jupiter)
+//Planet tit(.75, 3.7, 0, 2.40, 0, 0);		//Titan	   (Saturn)
+//Planet nix(.10, 1.5, 0, 5.00, 0, 0);		//Nix	   (Pluto)
+//Planet puc(.26, 2.9, 0, 7.00, 0, 0);		//Puck	   (Uranus)
+//Planet tri(.36, 3.2, 0, 3.40, 0, 0);		//Triton   (Neptune)
 
 int isAnimate = 0;
 int bigOrbitActive = 1;
@@ -83,6 +83,8 @@ static float spotAngle = 90; // Spotlight cone half-angle.
 float spotDirection[] = { 0.0, 1.0, 0.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
+
+//loading textures using loadTexture function into OpenGL
 GLuint loadTexture(Image* image) {
 	//http://www.codeincodeblock.com/2012/05/simple-method-for-texture-mapping-on.html
 	GLuint textureId;
@@ -154,21 +156,21 @@ void setup(void) {
 
 }
 
-void orbitalTrails(void) {
-	//glPushMatrix();
-	//glColor3ub(255, 255, 255);
-	//glTranslatef(0.0, 0.0, 0.0);
-	///*glRotatef(90.0, 1.0, 0.0, 0.0);
-	//glutWireTorus(0.001, mer.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, ven.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, ear.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, mar.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, jup.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, sat.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, ura.distance, 100.0, 100.0);
-	//glutWireTorus(0.001, nep.distance, 100.0, 100.0);*/
-	//glPopMatrix();
-}
+//void orbitalTrails(void) {
+//	//glPushMatrix();
+//	//glColor3ub(255, 255, 255);
+//	//glTranslatef(0.0, 0.0, 0.0);
+//	///*glRotatef(90.0, 1.0, 0.0, 0.0);
+//	//glutWireTorus(0.001, mer.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, ven.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, ear.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, mar.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, jup.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, sat.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, ura.distance, 100.0, 100.0);
+//	//glutWireTorus(0.001, nep.distance, 100.0, 100.0);*/
+//	//glPopMatrix();
+//}
 
 void drawLogoScene(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -198,7 +200,7 @@ void drawScene(void) {
 	if (changeCamera == 1)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	if (changeCamera == 2)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-	if (bigOrbitActive == 1) orbitalTrails();
+	/*if (bigOrbitActive == 1) orbitalTrails();*/
 
 	GLUquadric* quadric;
 	quadric = gluNewQuadric();
