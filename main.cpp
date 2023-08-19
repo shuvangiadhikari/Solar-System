@@ -71,8 +71,8 @@ Planet lun(.40, 3, 0, 5.40, 0, 0);			//Luna     (Earth)
 //Planet puc(.26, 2.9, 0, 7.00, 0, 0);		//Puck	   (Uranus)
 //Planet tri(.36, 3.2, 0, 3.40, 0, 0);		//Triton   (Neptune)
 
-int isAnimate = 0;
-int bigOrbitActive = 1;
+int isAnimate = 1;
+int bigOrbitActive = 0;
 int smallOrbitActive = 0;
 int moonsActive = 1;
 int changeCamera = 0;
@@ -92,8 +92,6 @@ static float spotAngle = 180; // Spotlight cone half-angle.
 float spotDirection[] = { 1.0, 1.0, 1.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
-
-//loading textures using loadTexture function into OpenGL
 GLuint loadTexture(Image* image) {
 	//http://www.codeincodeblock.com/2012/05/simple-method-for-texture-mapping-on.html
 	GLuint textureId;
@@ -119,15 +117,15 @@ void setup(void) {
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
 	Image* sta = loadBMP("stars.bmp");		staTexture = loadTexture(sta);		delete sta;
-	Image* sun = loadBMP("sun.bmp");		sunTexture = loadTexture(sun);		delete sun;
+	Image* sun = loadBMP("sunmap.bmp");		sunTexture = loadTexture(sun);		delete sun;
 	Image* mer = loadBMP("mercury.bmp");	merTexture = loadTexture(mer);		delete mer;
 	Image* ven = loadBMP("venus.bmp");		venTexture = loadTexture(ven);		delete ven;
 	Image* ear = loadBMP("earth.bmp");		earTexture = loadTexture(ear);		delete ear;
 	Image* mar = loadBMP("mars.bmp");		marTexture = loadTexture(mar);		delete mar;
-	Image* jup = loadBMP("jupiter.bmp");	jupTexture = loadTexture(jup);		delete jup;
-	Image* sat = loadBMP("saturn.bmp");		satTexture = loadTexture(sat);		delete sat;
+	Image* jup = loadBMP("jupitermap.bmp");	jupTexture = loadTexture(jup);		delete jup;
+	Image* sat = loadBMP("saturnmap.bmp");		satTexture = loadTexture(sat);		delete sat;
 	Image* ura = loadBMP("uranus.bmp");		uraTexture = loadTexture(ura);		delete ura;
-	Image* nep = loadBMP("neptune.bmp");	nepTexture = loadTexture(nep);		delete nep;
+	Image* nep = loadBMP("neptunemap.bmp");	nepTexture = loadTexture(nep);		delete nep;
 	Image* log = loadBMP("logo.bmp");		logTexture = loadTexture(log);		delete log;
 	//Image* kri = loadBMP("shrikrishna.bmp"); kriTexture = loadTexture(kri);     delete kri;
 
@@ -334,7 +332,7 @@ void ShreeKrishnaTeeth(void) {
 	//tala ko daat
 	glPushMatrix();
 	glColor3ub(255, 255, 255);
-	glTranslatef(93.0,-5, 1.0);
+	glTranslatef(93.0, -5, 1.0);
 	glutSolidCube(8.0);
 	glPopMatrix();
 
@@ -751,14 +749,23 @@ void animate(int n) {
 		if (mer, ven, ear, mar, jup, sat, ura, nep.orbit > 360.0) {
 			mer, ven, ear, mar, jup, sat, ura, nep.orbit -= 360.0;
 		}
-		mer.axisAni += 10.0;
+		/*mer.axisAni += 10.0;
 		ven.axisAni += 10.0;
 		ear.axisAni += 10.0;
 		mar.axisAni += 10.0;
 		jup.axisAni += 10.0;
 		sat.axisAni += 10.0;
 		ura.axisAni += 10.0;
-		nep.axisAni += 10.0;
+		nep.axisAni += 10.0;*/
+
+		mer.axisAni += 0.170648;
+		ven.axisAni += 0.041152;
+		ear.axisAni += 10.0;
+		mar.axisAni += 9.7087;
+		jup.axisAni += 24.39024;
+		sat.axisAni += 22.222;
+		ura.axisAni += 13.8889;
+		nep.axisAni += 14.9257;
 		//plu.axisAni += 10.0;
 		if (mer, ven, ear, mar, jup, sat, ura, nep.axisAni > 360.0) {
 			mer, ven, ear, mar, jup, sat, ura, nep.axisAni -= 360.0;
@@ -790,7 +797,7 @@ void mouseWheel(int wheel, int direction, int x, int y)
 void keyInput(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: exit(0); break;
-	case ' ': if (isAnimate) isAnimate = 0; else { isAnimate = 1; animate(1); } break;
+	case 'p': if (isAnimate) isAnimate = 0; else { isAnimate = 1; animate(1); } break;
 	case 'o': if (smallOrbitActive) smallOrbitActive = 0; else smallOrbitActive = 1; glutPostRedisplay(); break;
 	case 'O': if (bigOrbitActive) bigOrbitActive = 0; else bigOrbitActive = 1; glutPostRedisplay(); break;
 	case 'm': if (moonsActive) moonsActive = 0; else moonsActive = 1; glutPostRedisplay(); break;
@@ -804,14 +811,15 @@ void keyInput(unsigned char key, int x, int y) {
 }
 
 void intructions(void) {
-	cout << "Press SPACE to play/pause the simulation." << endl;
-	cout << "ESC to exit the simulation." << endl;
-	cout << "O to show/hide Big Orbital Trails." << endl;
-	cout << "o to show/hide Small Orbital Trails." << endl;
-	cout << "M/m to show/hide Moons." << endl;
+	cout << "p = Pause/Play" << endl;
+	//cout << "Press SPACE to play/pause the simulation." << endl;
+	cout << "ESC = Exit" << endl;
+	cout << "O = show/hide orbits" << endl;
+	//cout << "o to show/hide Small Orbital Trails." << endl;
+	cout << "M/m = show/hide Moons." << endl;
 	cout << "L/l to show/hide labels" << endl;
 	//cout << "1, 2 and 3 to change camera angles." << endl;
-	cout << "Scroll to change camera movement" << endl;
+	cout << "Mouse Scroll = change camera" << endl;
 	cout << x_zoom << ", " << y_zoom << ", " << z_zoom << endl;
 }
 
@@ -825,7 +833,7 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(700, 700);
 	glutInitWindowPosition(500, 0);
-	glutCreateWindow("Solar System");
+	glutCreateWindow("Solar System Simulation");
 	glutDisplayFunc(drawScenesInOrder);
 	glutReshapeFunc(resize);
 	glutMouseFunc(mouseControl);
