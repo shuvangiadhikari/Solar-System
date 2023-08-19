@@ -302,14 +302,71 @@ void ShreeKrishnaTeeth(void) {
 
 
 	glColor3ub(255, 255, 255);
-	glTranslatef(90.0, 35.0, 0.0);
+	glTranslatef(90, 36.0, 3.0);
 	glutSolidCube(10.0);
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(90.0, 38.0, 13.0);
+	glTranslatef(89.0, 39.0, 13.0);
 	glutSolidCube(10.0);
 	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(86, 40.0, 23.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(85.0, 40.0, 33.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(80.0, 39.0, 43.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(78.0, 34.0, 51.0);
+	glutSolidCube(8.0);
+	glPopMatrix();
+
+	//tala ko daat
+	glPushMatrix();
+	glColor3ub(255, 255, 255);
+	glTranslatef(93.0,-5, 1.0);
+	glutSolidCube(8.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(92.0, -8, 9.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(91.0, -10, 19.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glTranslatef(87.0, -12, 29.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(80.0, -14.5, 39.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(70, -18.0, 49.0);
+	glutSolidCube(15.0);
+	glPopMatrix();
+	/*glPushMatrix();
+	glTranslatef(93.0, 36.0, 53.0);
+	glutSolidCube(10.0);
+	glPopMatrix();*/
 }
 
 
