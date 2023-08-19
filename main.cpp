@@ -89,7 +89,7 @@ int logoScene = 1;
 
 float lightPos[] = { 0.0, 0.0, -50.0, 1.0 }; // Spotlight position.
 static float spotAngle = 180; // Spotlight cone half-angle.
-float spotDirection[] = { 0.0, 1.0, 0.0 }; // Spotlight direction.
+float spotDirection[] = { 1.0, 1.0, 1.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
 GLuint loadTexture(Image* image) {
@@ -272,7 +272,7 @@ float x_zoom = 0;
 float y_zoom = zoom;
 float z_zoom = 50.0;
 
-void ShreeKrishna(void) {
+void ShreeKrishnaLips(void) {
 	glPushMatrix();
 	glColor3ub(214, 91, 91);
 	glTranslatef(80.0, 10.0, 25.0);
@@ -283,8 +283,30 @@ void ShreeKrishna(void) {
 
 	glutSolidTorus(10.0, 50.0, 50.0, 50.0);
 	glColor3ub(255, 255, 255);
-	glutSolidCube(10.0);
+	/*glTranslatef(0.0, 15.0, 0.0);
+	glutSolidCube(10.0);*/
 
+	glPopMatrix();
+}
+
+void ShreeKrishnaTeeth(void) {
+	glPushMatrix();
+	//glColor3ub(214, 91, 91);
+	//glTranslatef(80.0, 10.0, 25.0);
+	//glRotatef(90.0, 0.0, 1.0, 0.0); // rotate 90 degrees about Y-axis
+	//glRotatef(-23.4985, 0.0, 1.0, 0.0);
+	//glRotatef(23.985, 0.0, 0.0, 1.0);
+	//glScalef(1.0, 0.8, 2.0);
+
+
+	glColor3ub(255, 255, 255);
+	glTranslatef(90.0, 35.0, 0.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(90.0, 38.0, 13.0);
+	glutSolidCube(10.0);
 	glPopMatrix();
 }
 
@@ -594,7 +616,8 @@ void drawScene(void) {
 	}*/
 	glPopMatrix();
 
-	ShreeKrishna();
+	ShreeKrishnaLips();
+	ShreeKrishnaTeeth();
 
 	kuiperBelt();
 
