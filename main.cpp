@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib> // for rand() function for random number generator in orbit position
+#include <cmath>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <GL/glext.h>
@@ -88,7 +89,7 @@ int logoScene = 1;
 
 float lightPos[] = { 0.0, 0.0, -50.0, 1.0 }; // Spotlight position.
 static float spotAngle = 180; // Spotlight cone half-angle.
-float spotDirection[] = { 0.0, 1.0, 0.0 }; // Spotlight direction.
+float spotDirection[] = { 1.0, 1.0, 1.0 }; // Spotlight direction.
 static float spotExponent = 1.0; // Spotlight exponent = attenuation factor.
 
 
@@ -102,7 +103,7 @@ GLuint loadTexture(Image* image) {
 	return textureId;
 }
 
-GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, pluTexture, staTexture, logTexture;
+GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, pluTexture, staTexture, logTexture, kriTexture;
 
 void writeBitmapString(void* font, char* string)
 {
@@ -128,6 +129,7 @@ void setup(void) {
 	Image* ura = loadBMP("uranus.bmp");		uraTexture = loadTexture(ura);		delete ura;
 	Image* nep = loadBMP("neptune.bmp");	nepTexture = loadTexture(nep);		delete nep;
 	Image* log = loadBMP("logo.bmp");		logTexture = loadTexture(log);		delete log;
+	//Image* kri = loadBMP("shrikrishna.bmp"); kriTexture = loadTexture(kri);     delete kri;
 
 	//LIGHTING SETUP
 	//glEnable(GL_LIGHTING);
@@ -152,6 +154,7 @@ void setup(void) {
 	glEnable(GL_LIGHTING);
 	float lightAmb[] = { 0.0, 0.0, 0.0, 1.0 }; // ambient lighting is set to full black
 	float lightDifAndSpec[] = { 1.0, 1.0, 1.0, 1.0 }; // source lighting is set to full white
+	//float globAmb[] = { 0.1, 0.1, 0.1, 1.0 }; // how much illumination when there is no light at all
 	float globAmb[] = { 0.1, 0.1, 0.1, 1.0 }; // how much illumination when there is no light at all
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDifAndSpec);
@@ -271,6 +274,46 @@ float x_zoom = 0;
 float y_zoom = zoom;
 float z_zoom = 50.0;
 
+void ShreeKrishnaLips(void) {
+	glPushMatrix();
+	glColor3ub(214, 91, 91);
+	glTranslatef(80.0, 10.0, 25.0);
+	glRotatef(90.0, 0.0, 1.0, 0.0); // rotate 90 degrees about Y-axis
+	glRotatef(-23.4985, 0.0, 1.0, 0.0);
+	glRotatef(23.985, 0.0, 0.0, 1.0);
+	glScalef(1.0, 0.8, 2.0);
+
+	glutSolidTorus(10.0, 50.0, 50.0, 50.0);
+	glColor3ub(255, 255, 255);
+	/*glTranslatef(0.0, 15.0, 0.0);
+	glutSolidCube(10.0);*/
+
+	glPopMatrix();
+}
+
+void ShreeKrishnaTeeth(void) {
+	glPushMatrix();
+	//glColor3ub(214, 91, 91);
+	//glTranslatef(80.0, 10.0, 25.0);
+	//glRotatef(90.0, 0.0, 1.0, 0.0); // rotate 90 degrees about Y-axis
+	//glRotatef(-23.4985, 0.0, 1.0, 0.0);
+	//glRotatef(23.985, 0.0, 0.0, 1.0);
+	//glScalef(1.0, 0.8, 2.0);
+
+
+	glColor3ub(255, 255, 255);
+	glTranslatef(90.0, 35.0, 0.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(90.0, 38.0, 13.0);
+	glutSolidCube(10.0);
+	glPopMatrix();
+}
+
+
+
 void drawScene(void) {
 	frameCount++;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -278,6 +321,7 @@ void drawScene(void) {
 
 	//if (changeCamera == 0)gluLookAt(0.0, zoom, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	if (changeCamera == 0)gluLookAt(x_zoom, y_zoom, z_zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	cout << x_zoom << ", " << y_zoom << ", " << z_zoom << endl;
 	//if (changeCamera == 1)gluLookAt(0.0, 0.0, zoom, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	//if (changeCamera == 2)gluLookAt(0.0, zoom, 0.00001, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
@@ -574,6 +618,9 @@ void drawScene(void) {
 	}*/
 	glPopMatrix();
 
+	ShreeKrishnaLips();
+	ShreeKrishnaTeeth();
+
 	kuiperBelt();
 
 
@@ -708,6 +755,7 @@ void intructions(void) {
 	cout << "L/l to show/hide labels" << endl;
 	//cout << "1, 2 and 3 to change camera angles." << endl;
 	cout << "Scroll to change camera movement" << endl;
+	cout << x_zoom << ", " << y_zoom << ", " << z_zoom << endl;
 }
 
 int main(int argc, char** argv) {
