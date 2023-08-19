@@ -5,6 +5,7 @@
 #include <GL/freeglut.h>
 #include <GL/glext.h>
 #include "imageloader.h"
+#include "planet.h"
 #pragma comment(lib, "glew32.lib")
 
 using namespace std;
