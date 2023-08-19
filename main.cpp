@@ -269,7 +269,7 @@ void drawLogoScene(void) {
 	glutSwapBuffers();
 }
 
-float x_zoom = 0;
+float x_zoom = 163;
 float y_zoom = zoom;
 float z_zoom = 50.0;
 
