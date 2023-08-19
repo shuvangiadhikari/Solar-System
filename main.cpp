@@ -120,7 +120,7 @@ void setup(void) {
 	Image* sun = loadBMP("sunmap.bmp");		sunTexture = loadTexture(sun);		delete sun;
 	Image* mer = loadBMP("mercury.bmp");	merTexture = loadTexture(mer);		delete mer;
 	Image* ven = loadBMP("venus.bmp");		venTexture = loadTexture(ven);		delete ven;
-	Image* ear = loadBMP("earth.bmp");		earTexture = loadTexture(ear);		delete ear;
+	Image* ear = loadBMP("earthmap.bmp");		earTexture = loadTexture(ear);		delete ear;
 	Image* mar = loadBMP("mars.bmp");		marTexture = loadTexture(mar);		delete mar;
 	Image* jup = loadBMP("jupitermap.bmp");	jupTexture = loadTexture(jup);		delete jup;
 	Image* sat = loadBMP("saturnmap.bmp");		satTexture = loadTexture(sat);		delete sat;
